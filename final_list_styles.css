@@ -1,0 +1,110 @@
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #5C5C5C; /* Default text color for body */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.title {
+    font-size: 20px; /* Adjust font size as needed */
+    margin: 0; /* Remove default margin */
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+}
+
+.counter img {
+    width: 30px; /* Adjust icon size as needed */
+    margin-left: 5px; /* Add spacing between number and icon */
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+  width: 250px;
+  height: 40px;
+  background-color: #F0F0F0;
+  border: none;
+  border-radius: 20px;
+  padding-left: 40px; /* Ensure space for the icon */
+  position: relative; /* Remove absolute positioning */
+  background-image: url("search_icon.png"); /* Set the icon image */
+  background-position: 10px 50%; /* Position the icon at 10px from the left and vertically centered */
+  background-repeat: no-repeat; /* Ensure icon is displayed only once */
+}
+
+
+#searchIcon {
+  position: absolute;
+  left: 10px; /* Adjust left position as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: -10px; /* Add negative margin to push icon inside */
+  display: none;
+}
+
+#addToListButton {
+    background-color: #FF7425;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 15px 30px; /* Adjust padding to increase button size */
+    cursor: pointer;
+    display: block; /* Ensure block-level display for centering */
+    margin: 0 auto; /* Center horizontally */
+	position: absolute;
+	bottom: 90px; /* Adjust spacing from the bottom */
+	left: 50%;
+	transform: translateX(-50%); /* Center horizontally */
+}
+
+#addToListButton:hover {
+    background-color: #FF8E5E; /* Change color on hover */
+}
+
+.plus-button {
+  background-color: #FF7425; /* Orange color from your instructions */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.minus-button {
+  background-color: #F0F0F0; /* Light gray color from your instructions */
+  color: #333; /* Adjust text color as needed */
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    color: #FF696A; /* red color */
+}
