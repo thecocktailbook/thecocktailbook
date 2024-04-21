@@ -1,6 +1,12 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap')
+    
+}
+
 body {
 	padding: 20px;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     color: #5C5C5C; /* Default text color for body */
@@ -25,6 +31,8 @@ main {
 .counter {
     display: flex;
     align-items: center;
+	font-weight: bold;
+
 }
 
 .counter img {
@@ -76,20 +84,22 @@ main {
     background-color: #FF7425;
     color: white;
     border: none;
-	font-weight: bold;
     border-radius: 20px;
     padding: 15px 30px; /* Adjust padding to increase button size */
     cursor: pointer;
     display: block; /* Ensure block-level display for centering */
     margin: 0 auto; /* Center horizontally */
+	font-weight: bold;
 }
 
-#addToListButton:hover {
-    background-color: #FF8E5E; /* Change color on hover */
+#addToListButton:active {
+    background-color: #FFFFFF;
+	color: #FF7425;	/* Change color on hover */
 }
 
 footer {
     text-align: center;
+	font-weight: bold;
     padding: 10px 0;
-    color: #f00; /* Red color for footer text */
+    color: #FF696A;/* Red color for footer text */
 }

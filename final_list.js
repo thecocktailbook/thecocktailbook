@@ -1,42 +1,61 @@
+// Mock data for cocktails
 const cocktails = [
-    { name: "Margarita", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-    { name: "Gin and tonic", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Mojito", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Strawberry daiquiri", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Pina colada", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Cosmopolitan", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Mai tai", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Negroni", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Whiskey sour", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Sangria", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Mimosa", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Bloody Mary", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Long island", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Espresso martini", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Whiskey smash", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Sex on the beach", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Blue lagoon", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Tequila sunrise", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Aperol spritz", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "White lady", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Маргарита", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Джин с тоник", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Мохито", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Ягодово дайкири", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Пина Колада", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Космополитън", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Май тай", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Негрони", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Уиски сауър", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Сангрия", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Мимоза", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Блъди Мери", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Лонг Айлънд", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Еспресо мартини", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Уиски смаш", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Секс на плажа", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Синя лагуна", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Текила сънрайз", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Аперол шприц", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Уайт Лейди", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
 ];
 
+// Function to handle search
 function handleSearch() {
+    // Get the search input element
     const searchInput = document.getElementById("searchInput");
-    const searchTerm = searchInput.value.toLowerCase();
+    // Get the value of the search input
+    let searchTerm = searchInput.value;
     
-    const cocktail = cocktails.find(cocktail => cocktail.name.toLowerCase() === searchTerm);
+    // Convert Bulgarian characters to English using transliteration library
+    searchTerm = he.decode(searchTerm);
     
-    if (cocktail) {
-		//var theURL = window.location.pathname;
-		//theURL = theURL.replace("/index.html", "/"+searchTerm+"html");
-        // Redirect to cocktail details page with selected cocktail name as URL parameter
-        //window.location.href = `cocktail_details.html?cocktail=${encodeURIComponent(cocktail.name)}`;
-        window.location.href = `${searchTerm}.html`;
+    // Convert the search term to lowercase
+    searchTerm = searchTerm.toLowerCase();
+    
+    // Find exact match first
+    const exactMatch = cocktails.find(cocktail => cocktail.name.toLowerCase() === searchTerm);
+    
+    // If exact match is found, redirect to its page
+    if (exactMatch) {
+        window.location.href = `${encodeURIComponent(exactMatch.name)}.html`;
+        return; // Exit the function
+    }
+    
+    // If no exact match is found, find partial match
+    const partialMatch = cocktails.find(cocktail => cocktail.name.toLowerCase().includes(searchTerm));
+    
+    // If partial match is found, redirect to its page
+    if (partialMatch) {
+        window.location.href = `${encodeURIComponent(partialMatch.name)}.html`;
     } else {
-        alert("Cocktail not found!");
+        // If no match is found, display an alert
+        alert("Коктейлът не беше намерен!");
     }
 }
+
 
 // Event listener for search input
 document.getElementById("searchInput").addEventListener("keyup", function(event) {
@@ -45,19 +64,40 @@ document.getElementById("searchInput").addEventListener("keyup", function(event)
     }
 });
 
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize counter with total quantity of cocktails in localStorage
+    updateCounter();
+
     const addButton = document.getElementById('addToListButton');
     const counter = document.getElementById('cocktailCounter');
-    
+
     addButton.addEventListener('click', function() {
-		// let buttonValue = addButton.getAttribute("value");
-		// addedCocktails.push({cocktailName:buttonValue, quantity:1});
         let count = parseInt(counter.innerText);
         count++;
         counter.innerText = count;
     });
-	
 });
+
+// Function to calculate total quantity of cocktails and update the counter
+function updateCounter() {
+    const counter = document.getElementById('cocktailCounter');
+    let cocktailsQuantity = 0;
+
+    // Iterate through localStorage and sum up the quantities
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const cocktail = JSON.parse(localStorage.getItem(key));
+
+        cocktailsQuantity += cocktail.quantity;
+    }
+
+    // Update the counter with the total quantity
+    counter.innerText = cocktailsQuantity;
+}
+
+
+
 
 function addListenersToCocktailButtons() {
 	const plusButtons = document.querySelectorAll('.plus-button');
@@ -74,6 +114,7 @@ function addListenersToCocktailButtons() {
 			}
 			
 			generateCocktails();
+            updateCounter(); // Update the counter
 		});
 	});
 	
@@ -93,6 +134,7 @@ function addListenersToCocktailButtons() {
 			}
 			
 			generateCocktails();
+            updateCounter(); // Update the counter
 		});
 	});
 }
@@ -113,28 +155,60 @@ function generateCocktails (){
 generateCocktails();
 
 function addCocktailToPage(cocktail) {
-	const newItem = document.createElement('li');
-	
-	const tempContainer = document.createElement('div');
+    const newItem = document.createElement('li');
+    
+    const tempContainer = document.createElement('div');
 
-	tempContainer.innerHTML = `<img src="${cocktail.cocktailName}.png" alt="Cocktail image">
-				<p>${cocktail.cocktailName}</p>
-				<span class="quantity">${cocktail.quantity}</span>
-				<button class="plus-button" value=${cocktail.cocktailName}>+</button>
-				<button class="minus-button" value=${cocktail.cocktailName}>-</button>`;
-	
-	// let cocktailTemplate = 
-		// `
-			// <li class="cocktail-item">
-				// <img src="${cocktail.cocktailName}.png" alt="Cocktail image">
-				// <p>${cocktail.cocktailName}</p>
-				// <span class="quantity">${cocktail.quantity}</span>
-				// <button id="plus-button" value=${cocktail.cocktailName}>+</button>
-				// <button id="minus-button" value=${cocktail.cocktailName}>-</button>
-			// </li>
-		// `
-	 newItem.appendChild(tempContainer);
-		
-	const cocktailList = document.getElementById('cocktailList');
-	cocktailList.appendChild(newItem);
+    // Define Bulgarian names for cocktails
+    const bulgarianNames = {
+			"margarita": "Маргарита",
+			"Ginandtonic": "Джин с тоник",
+			"Mojito": "Мохито",
+			"Strawberrydaiquiri": "Ягодово дайкири",
+			"pinacolada": "Пина Колада",
+			"cosmopolitan": "Космополитън",
+			"maitai": "Май тай",
+			"negroni": "Негрони",
+			"whiskeysour": "Уиски сауър",
+			"sangria": "Сангрия",
+			"mimosa": "Мимоза",
+			"bloodymary": "Блъди мери",
+			"longisland": "Лонг Айлънд",
+			"espressomartini": "Еспресо мартини",
+			"whiskeysmash": "Уиски смаш",
+			"sexonthebeach": "Секс на плажа",
+			"bluelagoon": "Синя Лагуна",
+			"tequilasunrise": "Текила сънрайз",
+			"aperolspritz": "Аперол шприц",
+			"whitelady": "Уайт Лейди"
+        // Add Bulgarian names for other cocktails as needed
+    };
+
+    // Get the Bulgarian name based on the English name
+    const bulgarianName = bulgarianNames[cocktail.cocktailName];
+
+    tempContainer.innerHTML = `<img src="${cocktail.cocktailName}.png" alt="Cocktail image">
+                <p>${bulgarianName}</p>
+                <span class="quantity">${cocktail.quantity}</span>
+                <button class="plus-button" value=${cocktail.cocktailName}>+</button>
+                <button class="minus-button" value=${cocktail.cocktailName}>-</button>`;
+    
+    newItem.appendChild(tempContainer);
+        
+    const cocktailList = document.getElementById('cocktailList');
+    cocktailList.appendChild(newItem);
+}
+
+
+function updateCounter() {
+    const counter = document.getElementById('cocktailCounter');
+    let cocktailsQuantity = 0;
+    for(let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const cocktail = JSON.parse(localStorage.getItem(key));
+
+        cocktailsQuantity += cocktail.quantity;
+    }
+
+    counter.innerText = cocktailsQuantity;
 }

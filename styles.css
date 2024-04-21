@@ -1,6 +1,11 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap')
+    
+}
+
 body {
-    padding: 20px;
-	font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     color: #5C5C5C; /* Default text color for body */
@@ -38,6 +43,7 @@ h1 {
 
 footer {
     text-align: center;
+	font-weight: bold;
     position: fixed;
     bottom: 0;
     left: 0;

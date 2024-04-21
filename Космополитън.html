@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail List</title>
+	  <script src="https://cdn.jsdelivr.net/npm/he/he.js"></script>
+    <link rel="stylesheet" href="cocktail_details_styles.css">
+</head>
+<body>
+    <header>
+        <p><b>The Cocktail Book</p></b>
+        <div class="counter">
+			<span id="cocktailCounter">0</span>
+			<a href="#">  <img src="glass_icon.png" alt="Glass icon">
+			</a>
+		</div>
+    </header>
+    <main>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Търси коктейл…">
+        <img src="search_icon.png" alt="Search icon" id="searchIcon">
+    </div>
+        <div id="cocktailDetails">
+            <img src="cosmopolitan.png" alt="Cocktail Image" id="cocktailImage">
+            <h2 id="cocktailName">Космополитън</h2>
+            <p>Приблизително разграждане от тялото за: <br> 2-4 часа</p>
+            <h3>Съставки:</h3>
+			<ul id="cocktailIngredients">
+				<li><input type="checkbox" id="ingredient1" name="ingredient1"><label for="ingredient1">45 мл водка</label></li>
+				<li><input type="checkbox" id="ingredient2" name="ingredient2"><label for="ingredient2">30 мл боровинков сок</label></li>
+				<li><input type="checkbox" id="ingredient3" name="ingredient3"><label for="ingredient3">15 мл трипъл сек</label></li>
+				<li><input type="checkbox" id="ingredient4" name="ingredient4"><label for="ingredient4">15 мл лимонов сок</label></li>
+				<li><input type="checkbox" id="ingredient5" name="ingredient5"><label for="ingredient5">Кубчета лед</label></li>
+				<li><input type="checkbox" id="ingredient6" name="ingredient6"><label for="ingredient6">Лимонов кора (за украса)</label></li>
+			</ul>
+            <h3>Инструкции:</h3>
+            <p id="instructionsText">Напълнете коктейлния шейкър с кубчета лед, след това добавете водката,
+			боровинковия сок, трипъл сек и лимоновия сок. Разклатете добре и прецедете в приготвена
+			чаша. Украсете с лимонов кора.</p>
+        </div>
+		<button id="addToListButton" value="cosmopolitan">Добави в списъка</button>
+    </main>
+    <footer>
+        <p>Прекомерната употреба на алкохол може да има сериозни последици за здравето. <br> Консумирайте отговорно!</p>
+    </footer>
+    <script src="cocktail_details.js"></script>
+</body>
+</html>

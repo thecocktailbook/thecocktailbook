@@ -1,44 +1,61 @@
 // Mock data for cocktails
 const cocktails = [
-    { name: "Margarita", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-    { name: "Gin and tonic", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-    { name: "Mojito", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Strawberry daiquiri", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Pina colada", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Cosmopolitan", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Mai tai", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Negroni", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Whiskey sour", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Sangria", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Mimosa", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Bloody Mary", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Long island", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Espresso martini", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Whiskey smash", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Sex on the beach", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Blue lagoon", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Tequila sunrise", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "Aperol spritz", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
-	{ name: "White lady", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Маргарита", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Джин с тоник", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Мохито", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Ягодово дайкири", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Пина Колада", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Космополитън", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Май тай", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Негрони", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Уиски сауър", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Сангрия", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Мимоза", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Блъди Мери", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Лонг Айлънд", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Еспресо мартини", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Уиски смаш", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Секс на плажа", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Синя лагуна", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Текила сънрайз", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Аперол шприц", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
+    { name: "Уайт Лейди", ingredients: ["Rum", "Mint", "Lime", "Soda Water"] },
 ];
 
 // Function to handle search
 function handleSearch() {
+    // Get the search input element
     const searchInput = document.getElementById("searchInput");
-    const searchTerm = searchInput.value.toLowerCase();
+    // Get the value of the search input
+    let searchTerm = searchInput.value;
     
-    const cocktail = cocktails.find(cocktail => cocktail.name.toLowerCase() === searchTerm);
+    // Convert Bulgarian characters to English using transliteration library
+    searchTerm = he.decode(searchTerm);
     
-    if (cocktail) {
-		//var theURL = window.location.pathname;
-		//theURL = theURL.replace("/index.html", "/"+searchTerm+"html");
-        // Redirect to cocktail details page with selected cocktail name as URL parameter
-        //window.location.href = `cocktail_details.html?cocktail=${encodeURIComponent(cocktail.name)}`;
-        window.location.href = `${searchTerm}.html`;
+    // Convert the search term to lowercase
+    searchTerm = searchTerm.toLowerCase();
+    
+    // Find exact match first
+    const exactMatch = cocktails.find(cocktail => cocktail.name.toLowerCase() === searchTerm);
+    
+    // If exact match is found, redirect to its page
+    if (exactMatch) {
+        window.location.href = `${encodeURIComponent(exactMatch.name)}.html`;
+        return; // Exit the function
+    }
+    
+    // If no exact match is found, find partial match
+    const partialMatch = cocktails.find(cocktail => cocktail.name.toLowerCase().includes(searchTerm));
+    
+    // If partial match is found, redirect to its page
+    if (partialMatch) {
+        window.location.href = `${encodeURIComponent(partialMatch.name)}.html`;
     } else {
-        alert("Cocktail not found!");
+        // If no match is found, display an alert
+        alert("Коктейлът не беше намерен!");
     }
 }
+
 
 // Event listener for search input
 document.getElementById("searchInput").addEventListener("keyup", function(event) {
