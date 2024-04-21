@@ -56,8 +56,6 @@ function handleSearch() {
     }
 }
 
-
-// Event listener for search input
 document.getElementById("searchInput").addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
         handleSearch();
