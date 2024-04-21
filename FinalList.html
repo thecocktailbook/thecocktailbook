@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWS5KR8XSC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VWS5KR8XSC');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cocktail Book - Final List</title>
+  <script src="https://cdn.jsdelivr.net/npm/he/he.js"></script>
+  <link rel="stylesheet" href="final_list_styles.css"></head>
+<body>
+  <header>
+    <p><b>The Cocktail Book</p></b>
+    <div class="counter">
+      <span id="cocktailCounter">0</span>
+      <img src="glass_icon.png" alt="Glass icon">
+    </div>
+  </header>
+  <div class="search-container">
+	<img src="search_icon.png" alt="Search icon" id="searchIcon">
+	<input type="text" id="searchInput" placeholder="Търси коктейл…">
+  </div>
+  <ul id="cocktailList" class="cocktail-list">
+	<li class="cocktail-item">
+	<!-- <img src="longisland.png" alt="Cocktail image"><p>Long island</p> -->
+	<span class="quantity">1</span>
+	<button class="plus-button">+</button>
+	<button class="minus-button">-</button>
+	</li>
+  </ul>
+  <footer>
+    <p>Прекомерната употреба на алкохол може да има сериозни последици за здравето. <br> Консумирайте отговорно!</p>
+  </footer>
+  <script src="final_list.js" ></script>
+  </body>
+</html>
