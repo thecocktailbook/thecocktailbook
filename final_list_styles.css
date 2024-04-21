@@ -89,6 +89,7 @@ header {
 }
 
 .plus-button {
+  text-align: center;
   background-color: #FF7425; /* Orange color from your instructions */
   color: white;
   border: none;
@@ -100,6 +101,7 @@ header {
 }
 
 .minus-button {
+  text-align: center;
   background-color: #F0F0F0; /* Light gray color from your instructions */
   color: #333; /* Adjust text color as needed */
   border: none;
